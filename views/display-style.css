@@ -67,6 +67,9 @@ footer {
     width: 100%;
     background-color: lightpink;
     padding: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+
     border:2px solid grey;
     border-radius:10px;
     margin:10px;
@@ -85,7 +88,6 @@ footer {
     justify-content: center;
     align-items: center;
     width: 100%;
-
     background-color:white;
 }
 
@@ -97,6 +99,7 @@ footer {
     width:100%;
     padding-top:10px;
     padding-bottom:10px;
+    border: 1px solid grey;
 }
 
 .user_name {
@@ -104,7 +107,7 @@ footer {
     font-size:20px;
     padding-left:20px;
     background-color:lightblue;
-    border-bottom: grey 1px solid;
+    border: grey 1px solid;
 }
 
 /* .some class { //please DEBUG
@@ -121,6 +124,7 @@ footer {
     
     /* border: 1px solid black; */
 }
+
 
 .comment_container{
     margin:5px 0px;
@@ -199,12 +203,25 @@ padding: 5px;
 
 .comment{
     margin-top:8px;
-    display:flex;
+    display: inline-flex;
     width:15%;
     align-self:center;
     text-align:center;
+    margin-right: 35%;
 }
 
 .emojicontainer {
+    display: inline-flex;
+    margin-left: 35%;
+}
+
+.emojigroup {
+    padding: 1px;
+    margin: 1px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+
 }

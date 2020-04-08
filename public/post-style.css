@@ -97,6 +97,10 @@ form {
     box-shadow: 10px 10px 5px grey;
 }
 
+#date {
+    display: none;
+}
+
 #characterAlert {
     display: none;
 }
@@ -106,6 +110,18 @@ form {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+
+.charactersCounterDisplayed {
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.charactersCounterDisplayed p {
+    font-size: 14px;
+    color: rgb(20, 20, 78);
 }
 
 #characterAlert p {

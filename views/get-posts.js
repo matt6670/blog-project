@@ -34,7 +34,6 @@ $(document).ready(function () {
                         let arrayOfComments = element.comments;
                         displayPostWithComment(index, postUser, postContent, arrayOfComments, element, postDate, imageUrl);
                         displayEmojiReacts(index);
-
                     }
                 })                 //Had trouble with async. displayPost() must be here to ensure image is returned
                    
@@ -58,6 +57,7 @@ $(document).ready(function () {
     }); //axios close
 
     function displayPostWithComment(arrayIndex, arrayUser, arrayPost, commentArray, postElement, arrayDate, arrayImage ) {
+
         //taken out of the function arguments: commentIndex, commentUser, commentValue, commentNumber
         let id = arrayIndex.toString();
         //displaying the post:
@@ -69,15 +69,17 @@ $(document).ready(function () {
                         <div class="user_post_image">
                             <div class="user_post"></div>
                         </div>
-                        <button class="comment">Comment</button>
+                        <div class="comment_and_emojis">
+                            <button class="comment">Comment</button>
+                        </div>
                         <div class="form_div">
                             <form action="/comment/${id}" method="POST" class="comment-container">
                                 <label for = "usernamebox">Username</label>
-                                <input name="commentUsername" type="text" class="usernamebox"/>
+                                <input value="Anonymous" required name="commentUsername" type="text" class="usernamebox"/>
                                 <label for = "commentbox">Comment here</label>
-                                <input name="commentContent" type="textarea" class="commentbox"/>
-                                <button type = "submit">Submit</button>
-                                <div
+                                <input required name="commentContent" type="textarea" class="commentbox"/>
+
+                                <button type = "submit" class="submit">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -93,9 +95,6 @@ $(document).ready(function () {
             console.log(arrayImage);
             $(`#${id} .user_post_image`).append(`<div class="user_image"></div>`);
             $(`#${id} .user_image`).html(`<img class ="giphyImage" src="${arrayImage}">`); //Applied class "giphyImage" to reduce image size. Feel free to change styling.
-        }
-        else{
-           $(`#${id} .user_post`).css("width", "100%");
         }
         //mapping comments:
         displayedComments = commentArray.map(comment => {
@@ -114,14 +113,15 @@ $(document).ready(function () {
 
         $(`#${idOfPost} .comment_section`).append(
             `<div id=${commentId} class="comment_container">
+                <div class="comment_icon"></div>
                 <div class="comment_username"></div>
                 <div class="comment_content"></div>
             </div>`
         );
-        $(`#${commentId} .comment_username`).html(`${userOfComment}`);    
-        $(`#${commentId} .comment_content`).html(`${contentOfComment}`);   
+        $(`#${commentId} .comment_username`).html(`&#128100; ${userOfComment}`);    
+        $(`#${commentId} .comment_content`).html(`${contentOfComment}`);  
+        $(`#${commentId} .comment_icon`).html(`&#128172;`);
     }
-
 
     function displayPostNoComment(arrayIndex, arrayUser, arrayPost, arrayDate, arrayImage) {
         let id = arrayIndex.toString();
@@ -140,12 +140,11 @@ $(document).ready(function () {
                         </div>
                         <div class="form_div">
                             <form action="/comment/${id}" method="POST" class="comment-container">
-                                
                                 <label for = "usernamebox">Username</label>
-                                <input name="commentUsername" type="text" class="usernamebox"/>
+                                <input value="Anonymous" required name="commentUsername" type="text" class="usernamebox"/>
                                 <label for = "commentbox">Comment here</label>
-                                <input name="commentContent" type="textarea" class="commentbox"/>
-                                <button type = "submit">Submit</button>
+                                <input required name="commentContent" type="textarea" class="commentbox"/>
+                                <button type = "submit" class="submit">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -203,7 +202,5 @@ function displayEmojiReacts(index) {
                 poopCount += 1;
                 $(`#poopCounter${id}`).html(`${poopCount}`);
             });
-
-        
 
 }
